@@ -22,6 +22,32 @@
 // In your second thenable log a String
 // that says `Here is the result of my random number multiplied
 // by 5: < place number result here>`
+let myFirstPromise = new Promise((resolve, reject) => {
+  const bool = true;
+  const rand = Math.floor(Math.random() * 10);
+  // console.log(rand)
+    if (bool) {
+      setTimeout(() => {
+        resolve(rand);
+      }, 2000)
+      
+    } else {
+      setTimeout(() => {
+        reject('Cannot compute random number!');
+      })
+    }
+  });
+
+
+myFirstPromise.then((data) => {
+  console.log(`I have my random number... ${data} and I will multiply it by 5!`);
+  return data;
+}).then((newData) => {
+  console.log(newData)
+  let x = newData * 5;
+  console.log(x)
+  console.log(`Here is the result of my random number multiplied by 5: ${x}`)
+})
 
 
 
