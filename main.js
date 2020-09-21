@@ -34,7 +34,7 @@ let myFirstPromise = new Promise((resolve, reject) => {
     } else {
       setTimeout(() => {
         reject('Cannot compute random number!');
-      })
+      }, 2000)
     }
   });
 
@@ -47,6 +47,9 @@ myFirstPromise.then((data) => {
   let x = newData * 5;
   console.log(x)
   console.log(`Here is the result of my random number multiplied by 5: ${x}`)
+})
+.catch((err) => {
+  console.log(err);
 })
 
 
@@ -70,3 +73,34 @@ let data = [
   { firstName: 'Doug', lastName: 'Lawson' },
   { firstName: 'Sandra', lastName: 'Mathers' },
 ];
+
+const getDataPromise = (people) => {
+  return new Promise((resolve, reject) => {
+    // let bool = false;
+    let bool = true;
+
+    if (!bool) {
+      setTimeout(() => {
+        reject('Something went wrong!')
+      }, 2000);
+    } else {
+      setTimeout(() => {
+        resolve(people)
+      },4000);
+    }
+  })
+};
+getDataPromise(data)
+.then((data) => {
+  console.log(data);
+    return data;
+})
+.then((people) => {
+  people.forEach((person) => {
+    console.log(`Hello ${person.firstName} ${person.lastName}`)
+  })
+})
+.catch((err) => {
+  console.log(err);
+})
+  
